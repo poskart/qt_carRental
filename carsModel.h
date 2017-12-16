@@ -1,16 +1,16 @@
-#ifndef MYFILESYSTEMMODEL_H
-#define MYFILESYSTEMMODEL_H
+#ifndef MYCARSMODEL_H
+#define MYCARSMODEL_H
 
-#include <QAbstractTableModel>
-#include <QFileSystemModel>
 #include <QAbstractTableModel>
 #include <QVariant>
 #include <QDebug>
+#include "car.h"
 
 class CarsModel : public QAbstractTableModel
 {
 public:
-    MyFileSystemModel(QObject *parent = 0);
+    CarsModel(QObject *parent = 0);
+    void setData(std::vector<Car> * cars);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data (const QModelIndex & index,
@@ -18,7 +18,7 @@ public:
     QVariant headerData(int section,Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const;
 private:
-    QList<Car> m_fileList;
+    std::vector<Car> * carsList;
 };
 
-#endif // MYFILESYSTEMMODEL_H
+#endif // MYCARSMODEL_H

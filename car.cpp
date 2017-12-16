@@ -33,27 +33,27 @@ void Car::setPower(int _power)
     power = _power;
 }
 
-QString Car::getName(void)
+QString Car::getName(void) const
 {
     return name;
 }
 
-QString Car::getType(void)
+QString Car::getType(void) const
 {
     return carType;
 }
 
-QString Car::getIdNumber(void)
+QString Car::getIdNumber(void) const
 {
     return idNumber;
 }
 
-double Car::getPrice(void)
+double Car::getPrice(void) const
 {
     return price;
 }
 
-int Car::getPower(void)
+int Car::getPower(void) const
 {
     return power;
 }

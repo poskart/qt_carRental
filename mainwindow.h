@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "person.h"
+#include "car.h"
+#include "renting.h"
+#include "carsModel.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +26,12 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    CarsModel * carsModel;
+
+    std::vector<Car> cars;
+    std::vector<Person> people;
+    std::vector<Renting> rentList;
 
     void makeConnections(void);
 };

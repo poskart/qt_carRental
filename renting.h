@@ -4,6 +4,7 @@
 #include <QDate>
 #include "person.h"
 #include "car.h"
+#include <memory>
 
 class Renting
 {

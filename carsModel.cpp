@@ -1,49 +1,48 @@
 #include "carsModel.h"
 
-MyFileSystemModel::MyFileSystemModel(QObject* parent) :
+CarsModel::CarsModel(QObject* parent) :
 QAbstractTableModel(parent)
 {
-    QString path = QDir::currentPath();
-
-    QDir mdir(path);
-    if(!mdir.exists())
-        qDebug () <<"Wrong directory!";
-    mdir.setFilter(QDir::Files);
-    foreach (QFileInfo fileInfo, mdir.entryInfoList())
-    {
-        m_fileList.append(File(fileInfo.fileName(), fileInfo.size(), fileInfo.baseName()));
-    }
+    carsList = new std::vector<Car>();
 }
 
-int MyFileSystemModel::columnCount(const QModelIndex &parent) const
+void CarsModel::setData(std::vector<Car> * cars)
+{
+    delete carsList;
+    carsList = cars;
+}
+
+int CarsModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return 3;
+    return 5;
 }
 
-int MyFileSystemModel::rowCount(const QModelIndex &parent) const
+int CarsModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return m_fileList.size();
+    return carsList->size();
 }
 
-QVariant MyFileSystemModel::data (const QModelIndex & index, int role) const
+QVariant CarsModel::data (const QModelIndex & index, int role) const
 {
     if (!index.isValid()) return QVariant();
 
-    if (index.row() >= m_fileList.size() || index.row() < 0) return QVariant();
+    if ((size_t)index.row() >= carsList->size() || index.row() < 0) return QVariant();
 
     if (role == Qt::DisplayRole) {
-        int tt = index.row();
-        //struct File & f = m_fileList.at(index.row());
-        const File& file = m_fileList.at(index.row());
+        const Car& car = carsList->at(index.row());
         switch (index.column()) {
         case 0:
-            return file.name;
+            return car.getName();
         case 1:
-            return file.size;
+            return car.getIdNumber();
         case 2:
-            return file.type;
+            return car.getType();
+        case 3:
+            return car.getPrice();
+        case 4:
+            return car.getPower();
         default:
             return QVariant();
         }
@@ -57,7 +56,7 @@ QVariant MyFileSystemModel::data (const QModelIndex & index, int role) const
     return QVariant();
 }
 
-QVariant MyFileSystemModel::headerData(int section,
+QVariant CarsModel::headerData(int section,
                                       Qt::Orientation orientation,int role) const {
     if (role != Qt::DisplayRole)
         return QVariant();
@@ -67,9 +66,13 @@ QVariant MyFileSystemModel::headerData(int section,
         case 0:
             return tr("Name");
         case 1:
-            return tr("Size [B]");
+            return tr("ID number");
         case 2:
             return tr("Type");
+        case 3:
+            return tr("Price");
+        case 4:
+            return tr("Power");
         default:
             return QVariant();
         }

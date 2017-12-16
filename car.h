@@ -24,11 +24,11 @@ public:
     void setPrice(double _price);
     void setPower(int _power);
 
-    QString getName(void);
-    QString getType(void);
-    QString getIdNumber(void);
-    double getPrice(void);
-    int getPower(void);
+    QString getName(void) const;
+    QString getType(void) const;
+    QString getIdNumber(void) const;
+    double getPrice(void) const;
+    int getPower(void) const;
 //    enum CarType{
 //        Carr,
 //        Truck,
