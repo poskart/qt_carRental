@@ -2,10 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "person.h"
-#include "car.h"
-#include "renting.h"
+#include "database.h"
 #include "carsModel.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +18,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+
 public slots:
 
 private slots:
@@ -27,11 +28,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    Database * _data;
     CarsModel * carsModel;
-
-    std::vector<Car> cars;
-    std::vector<Person> people;
-    std::vector<Renting> rentList;
 
     void makeConnections(void);
 };

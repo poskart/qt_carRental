@@ -7,19 +7,22 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-        ui->setupUi(this);
+    _data = new Database();
 
-        Car newCar1 = Car("Audi", "Car", "SZA 391", 59000.00, 120 );
-        Car newCar2 = Car("Skoda", "Car", "TM 402", 284992, 150);
-        Car newCar3 = Car("Jelcz", "Truck", "FV 1341", 1244242, 450);
-        cars.push_back(newCar1);
-        cars.push_back(newCar2);
-        cars.push_back(newCar3);
+    ui->setupUi(this);
+    makeConnections();
 
-        carsModel = new CarsModel();
-        carsModel->setData(&cars);
-        ui->tableView->setModel(carsModel);
-        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    Car newCar1 = Car("Audi", "Car", "SZA 391", 59000.00, 120 );
+    Car newCar2 = Car("Skoda", "Car", "TM 402", 284992, 150);
+    Car newCar3 = Car("Jelcz", "Truck", "FV 1341", 944242, 450);
+    _data->addCar(newCar1);
+    _data->addCar(newCar2);
+    _data->addCar(newCar3);
+
+    carsModel = new CarsModel();
+    carsModel->setData(_data->getCarList());
+    ui->tableView->setModel(carsModel);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 MainWindow::~MainWindow()

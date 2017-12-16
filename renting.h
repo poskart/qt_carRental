@@ -12,6 +12,12 @@ public:
     Renting();
     Renting(Person * p, Car * c, QDate bDate, QDate eDate);
 
+    QString getCarId(void) const;
+    Person & getPerson(void) const;
+    Car & getCar(void) const;
+    QDate getBeginDate(void) const;
+    QDate getEndDate(void) const;
+
 private:
     Person * person;
     Car * car;

@@ -32,7 +32,11 @@ SOURCES += \
     person.cpp \
     car.cpp \
     renting.cpp \
-    carsModel.cpp
+    carsModel.cpp \
+    database.cpp \
+    peoplemodel.cpp \
+    rentingsmodel.cpp \
+    addpersonwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,8 +44,13 @@ HEADERS += \
     person.h \
     car.h \
     renting.h \
-    carsModel.h
+    carsModel.h \
+    database.h \
+    peoplemodel.h \
+    rentingsmodel.h \
+    addpersonwindow.h
 
 FORMS += \
         mainwindow.ui \
-    addcarwindow.ui
+    addcarwindow.ui \
+    addpersonwindow.ui

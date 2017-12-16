@@ -29,22 +29,22 @@ void Person::setAge(int _age)
     age = _age;
 }
 
-QString Person::getName(void)
+QString Person::getName(void) const
 {
     return name;
 }
 
-QString Person::getSecName(void)
+QString Person::getSecName(void) const
 {
     return secName;
 }
 
-QString Person::getIdNumber(void)
+QString Person::getIdNumber(void) const
 {
     return idNumber;
 }
 
-int Person::getAge(void)
+int Person::getAge(void) const
 {
     return age;
 }

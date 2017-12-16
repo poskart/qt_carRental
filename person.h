@@ -14,10 +14,10 @@ public:
     void setIdNumber(QString _id);
     void setAge(int _age);
 
-    QString getName(void);
-    QString getSecName(void);
-    QString getIdNumber(void);
-    int getAge(void);
+    QString getName(void) const;
+    QString getSecName(void) const;
+    QString getIdNumber(void) const;
+    int getAge(void) const;
 
 private:
 
