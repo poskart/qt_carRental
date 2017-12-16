@@ -26,12 +26,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    addcarform.cpp
+    addcarwindow.cpp \
+    person.cpp \
+    car.cpp \
+    renting.cpp \
+    carsModel.cpp
 
 HEADERS += \
         mainwindow.h \
-    addcarform.h
+    addcarwindow.h \
+    person.h \
+    car.h \
+    renting.h \
+    carsModel.h
 
 FORMS += \
         mainwindow.ui \
-    addcarform.ui
+    addcarwindow.ui

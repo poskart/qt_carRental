@@ -16,10 +16,14 @@ public:
     ~MainWindow();
 
 public slots:
-    void callNewCarWindow(void);
+
+private slots:
+    void on_actionAdd_new_car_triggered();
 
 private:
     Ui::MainWindow *ui;
+
+    void makeConnections(void);
 };
 
 #endif // MAINWINDOW_H
