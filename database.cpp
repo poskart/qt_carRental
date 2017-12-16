@@ -2,7 +2,21 @@
 
 Database::Database()
 {
+    Car newCar1 = Car("Audi", "Car", "SZA 391", 59000.00, 120 );
+    Car newCar2 = Car("Skoda", "Car", "TM 402", 284992, 150);
+    Car newCar3 = Car("Jelcz", "Truck", "FV 1341", 944242, 450);
+    addCar(newCar1);
+    addCar(newCar2);
+    addCar(newCar3);
 
+    Person p1 = Person("Piotr", "Poskart", "FBG868594", 25);
+    Person p2 = Person("Marian", "Kowalski", "RTY142451", 45);
+    Person p3 = Person("Aniela", "Bożecka", "WEQ4124544", 33);
+    Person p4 = Person("Monika", "Połczyńska", "AGB424119", 22);
+    addPerson(p1);
+    addPerson(p2);
+    addPerson(p3);
+    addPerson(p4);
 }
 
 bool Database::addCar(Car & c)

@@ -36,7 +36,8 @@ SOURCES += \
     database.cpp \
     peoplemodel.cpp \
     rentingsmodel.cpp \
-    addpersonwindow.cpp
+    addpersonwindow.cpp \
+    addrentwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,9 +49,11 @@ HEADERS += \
     database.h \
     peoplemodel.h \
     rentingsmodel.h \
-    addpersonwindow.h
+    addpersonwindow.h \
+    addrentwindow.h
 
 FORMS += \
         mainwindow.ui \
     addcarwindow.ui \
-    addpersonwindow.ui
+    addpersonwindow.ui \
+    addrentwindow.ui

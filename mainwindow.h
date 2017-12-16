@@ -25,6 +25,8 @@ public slots:
 private slots:
     void on_actionAdd_new_car_triggered();
 
+    void on_actionRent_a_car_triggered();
+
 private:
     Ui::MainWindow *ui;
 
