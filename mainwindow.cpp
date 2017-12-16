@@ -13,9 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     makeConnections();
 
-    carsModel = new CarsModel();
-    carsModel->setData(_data->getCarList());
-    ui->tableView->setModel(carsModel);
+    rentingsModel = new RentingsModel();
+    rentingsModel->setData(_data->getRentList());
+    ui->tableView->setModel(rentingsModel);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 

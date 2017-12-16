@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "database.h"
-#include "carsModel.h"
+#include "rentingsmodel.h"
 
 
 namespace Ui {
@@ -31,7 +31,7 @@ private:
     Ui::MainWindow *ui;
 
     Database * _data;
-    CarsModel * carsModel;
+    RentingsModel * rentingsModel;
 
     void makeConnections(void);
 };

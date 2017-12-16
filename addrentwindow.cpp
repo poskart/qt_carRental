@@ -34,7 +34,20 @@ void AddRentWindow::on_addRentButton_clicked()
     if(carSelect->hasSelection() && personSelect->hasSelection() &&
             carSelect->selectedIndexes().size() == 1 && personSelect->selectedIndexes().size() == 1)
     {
+        QModelIndex carIdIdx = carSelect->selectedIndexes().at(0).sibling(
+                    carSelect->selectedIndexes().at(0).row(), 1);
+        QModelIndex personIdIdx = personSelect->selectedIndexes().at(0).sibling(
+                    personSelect->selectedIndexes().at(0).row(), 1);
 
+        if(carIdIdx.isValid() && personIdIdx.isValid())
+        {
+            Person * p = _data->findPerson(
+                        ui->personTableView->model()->data(personIdIdx, Qt::DisplayRole).toString());
+            Car * c = _data->findCar(
+                        ui->carsTableView->model()->data(carIdIdx, Qt::DisplayRole).toString());
+            Renting r = Renting(p, c, ui->beginDateEdit->date(), ui->endDateEdit->date());
+            _data->addRenting(r);
+        }
     }
     else
     {
@@ -43,9 +56,7 @@ void AddRentWindow::on_addRentButton_clicked()
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.exec();
     }
-    //    select->hasSelection();
-    //    select->selectedRows();
-    //    select->selectedColumns();
+    this->close();
 }
 
 void AddRentWindow::on_cancelButton_clicked()

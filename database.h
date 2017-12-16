@@ -17,6 +17,9 @@ public:
     bool addRenting(Renting & r);
     bool removeRenting(Renting & r);
 
+    Car * findCar(QString carId) const;
+    Person * findPerson(QString personId) const;
+    Renting * findRenting(QString carId) const;
     std::vector<Car> * getCarList(void);
     std::vector<Person> * getPeopleList(void);
     std::vector<Renting> * getRentList(void);

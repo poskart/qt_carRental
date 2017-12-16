@@ -94,6 +94,33 @@ bool Database::removeRenting(Renting & r)
     return false;
 }
 
+Car * Database::findCar(QString carId) const
+{
+    auto it = std::find_if(_cars.begin(), _cars.end(),
+                           [&](Car tmpCar){return tmpCar.getIdNumber() == carId;});
+    if(it != _cars.end())
+            return const_cast<Car *>(&(*it));
+    return nullptr;
+}
+
+Person * Database::findPerson(QString personId) const
+{
+    auto it = std::find_if(_people.begin(), _people.end(),
+                           [&](Person tmpPerson){return tmpPerson.getIdNumber() == personId;});
+    if(it != _people.end())
+            return const_cast<Person *>(&(*it));
+    return nullptr;
+}
+
+Renting * Database::findRenting(QString carId) const
+{
+    auto it = std::find_if(_rentList.begin(), _rentList.end(),
+                           [&](Renting tmpRent){return tmpRent.getCar().getIdNumber() == carId;});
+    if(it != _rentList.end())
+            return const_cast<Renting *>(&(*it));
+    return nullptr;
+}
+
 std::vector<Car> * Database::getCarList(void)
 {
     return &_cars;

@@ -23,7 +23,7 @@ private slots:
 
     void on_cancelButton_clicked();
 
-private:
+    private:
     Ui::AddRentWindow *ui;
     Database * _data;
     CarsModel * carsModel;
