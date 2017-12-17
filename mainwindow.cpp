@@ -13,10 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     makeConnections();
 
-    rentingsModel = new RentingsModel();
-    rentingsModel->setData(_data->getRentList());
+    rentingsModel = new RentingsModel(_data);
     ui->tableView->setModel(rentingsModel);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+}
+
+void MainWindow::debugSlot(void)
+{
+    qDebug("debug slot called");
 }
 
 MainWindow::~MainWindow()
@@ -26,6 +30,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::makeConnections(void)
 {
+    //connect(_data, SIGNAL(rentingChanged(void)), this, SLOT(debugSlot()));//this->ui->tableView, SLOT(updateEditorData()));
 }
 
 void MainWindow::on_actionAdd_new_car_triggered()
@@ -39,3 +44,4 @@ void MainWindow::on_actionRent_a_car_triggered()
     QMainWindow * addRentWindow = new AddRentWindow(_data, this);
     addRentWindow->show();
 }
+

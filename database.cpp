@@ -17,6 +17,10 @@ Database::Database()
     addPerson(p2);
     addPerson(p3);
     addPerson(p4);
+
+    Renting r1 = Renting(findPerson(p1.getIdNumber()), findCar(newCar2.getIdNumber()),
+                         QDate::currentDate(), QDate::currentDate().addDays(14));
+    addRenting(r1);
 }
 
 bool Database::addCar(Car & c)
@@ -69,13 +73,13 @@ bool Database::removePerson(Person & p)
     return false;
 }
 
-bool Database::addRenting(Renting & r)
+bool Database::addRenting(const Renting & r)
 {
     if(std::none_of(_rentList.begin(), _rentList.end(),
                     [&](Renting tmpRent){return r.getCarId() == tmpRent.getCarId(); }))
     {
         _rentList.push_back(r);
-        emit rentingChanged();
+        emit rentingAdded(const_cast<Renting *>(&r));
         return true;
     }
     return false;

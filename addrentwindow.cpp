@@ -2,6 +2,7 @@
 #include "ui_addrentwindow.h"
 
 #include <QMessageBox>
+#include "mainwindow.h"
 
 AddRentWindow::AddRentWindow(Database * db, QWidget *parent) :
     QMainWindow(parent),
@@ -37,7 +38,7 @@ void AddRentWindow::on_addRentButton_clicked()
         QModelIndex carIdIdx = carSelect->selectedIndexes().at(0).sibling(
                     carSelect->selectedIndexes().at(0).row(), 1);
         QModelIndex personIdIdx = personSelect->selectedIndexes().at(0).sibling(
-                    personSelect->selectedIndexes().at(0).row(), 1);
+                    personSelect->selectedIndexes().at(0).row(), 2);
 
         if(carIdIdx.isValid() && personIdIdx.isValid())
         {

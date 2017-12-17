@@ -4,9 +4,11 @@
 #include "car.h"
 #include "person.h"
 #include "renting.h"
+#include <QObject>
 
-class Database
+class Database : public QObject
 {
+    Q_OBJECT
 public:
     Database();
 
@@ -14,7 +16,7 @@ public:
     bool removeCar(Car & c);
     bool addPerson(Person & p);
     bool removePerson(Person & p);
-    bool addRenting(Renting & r);
+    bool addRenting(const Renting & r);
     bool removeRenting(Renting & r);
 
     Car * findCar(QString carId) const;
@@ -25,10 +27,11 @@ public:
     std::vector<Renting> * getRentList(void);
 
 signals:
-    void carsChanged(void){}
-    void personChanged(void){}
-    void rentingChanged(void){}
+    void carsChanged(void);
+    void personChanged(void);
+    void rentingChanged(void);
 
+    void rentingAdded(Renting *);
 private:
     std::vector<Car> _cars;
     std::vector<Person> _people;

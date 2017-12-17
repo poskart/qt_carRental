@@ -1,15 +1,32 @@
 #include "rentingsmodel.h"
 
-RentingsModel::RentingsModel(QObject* parent) :
-QAbstractTableModel(parent)
+RentingsModel::RentingsModel(Database * db, QObject* parent) :
+QAbstractTableModel(parent), _data(db)
 {
-    rentingList = new std::vector<Renting>();
+    rentingList = _data->getRentList();
+    connect(_data, SIGNAL(rentingAdded(Renting*)), this, SLOT(addItemToModel()));
 }
 
-void RentingsModel::setData(std::vector<Renting> * rentings)
+void RentingsModel::add(const Renting& r)
 {
-    delete rentingList;
-    rentingList = rentings;
+    beginInsertRows(QModelIndex(), rentingList->size() - 1, rentingList->size() - 1);
+    _data->addRenting(r);
+    endInsertRows();
+
+    QModelIndex top = createIndex(rentingList->size() - 1, 0, nullptr);
+    QModelIndex bottom = createIndex(rentingList->size() - 1, columnCount()-1, nullptr);
+
+    emit dataChanged(top, bottom); // emit layoutChanged() if headers changed
+}
+
+void RentingsModel::addItemToModel(void)
+{
+    beginInsertRows(QModelIndex(), rentingList->size() - 1, rentingList->size() - 1);
+    endInsertRows();
+
+    QModelIndex top = createIndex(rentingList->size() - 1, 0, nullptr);
+    QModelIndex bottom = createIndex(rentingList->size() - 1, columnCount()-1, nullptr);
+    emit dataChanged(top, bottom); // emit layoutChanged() if headers changed
 }
 
 int RentingsModel::columnCount(const QModelIndex &parent) const
