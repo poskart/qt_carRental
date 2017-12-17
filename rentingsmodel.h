@@ -12,7 +12,7 @@ class RentingsModel : public QAbstractTableModel
     Q_OBJECT
 public:
     RentingsModel(Database * db, QObject *parent = 0);
-    void add(const Renting& r);
+    bool add(const Renting& r);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data (const QModelIndex & index,

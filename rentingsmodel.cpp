@@ -7,16 +7,22 @@ QAbstractTableModel(parent), _data(db)
     connect(_data, SIGNAL(rentingAdded(Renting*)), this, SLOT(addItemToModel()));
 }
 
-void RentingsModel::add(const Renting& r)
+bool RentingsModel::add(const Renting& r)
 {
+    bool rentingAdded = false;
     beginInsertRows(QModelIndex(), rentingList->size() - 1, rentingList->size() - 1);
-    _data->addRenting(r);
+    rentingAdded = _data->addRenting(r);
     endInsertRows();
 
-    QModelIndex top = createIndex(rentingList->size() - 1, 0, nullptr);
-    QModelIndex bottom = createIndex(rentingList->size() - 1, columnCount()-1, nullptr);
+    if(rentingAdded)
+    {
+        QModelIndex top = createIndex(rentingList->size() - 1, 0, nullptr);
+        QModelIndex bottom = createIndex(rentingList->size() - 1, columnCount()-1, nullptr);
 
-    emit dataChanged(top, bottom); // emit layoutChanged() if headers changed
+        emit dataChanged(top, bottom); // emit layoutChanged() if headers changed
+        return true;
+    }
+    return false;
 }
 
 void RentingsModel::addItemToModel(void)

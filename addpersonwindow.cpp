@@ -1,9 +1,8 @@
 #include "addpersonwindow.h"
 #include "ui_addpersonwindow.h"
 
-AddPersonWindow::AddPersonWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::AddPersonWindow)
+AddPersonWindow::AddPersonWindow(Database * db, QWidget *parent) :
+    QMainWindow(parent), ui(new Ui::AddPersonWindow), _data(db)
 {
     ui->setupUi(this);
 }
@@ -11,4 +10,9 @@ AddPersonWindow::AddPersonWindow(QWidget *parent) :
 AddPersonWindow::~AddPersonWindow()
 {
     delete ui;
+}
+
+void AddPersonWindow::on_cButton_clicked()
+{
+    this->close();
 }
